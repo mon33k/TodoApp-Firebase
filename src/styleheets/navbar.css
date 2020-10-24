@@ -1,0 +1,17 @@
+nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.navbar-container {
+    border: solid 1px red;
+    padding: 20px;
+    width: 100%;
+}
+
+.navbar {
+    flex-direction: row;
+    list-style-type: none;
+    justify-content: space-around;
+}

@@ -17,9 +17,12 @@ class TodoList extends Component {
             const todoListTempArr = []
             for (let id in todos) {
                 console.log("snapshot.val() id ", id)
+                console.log("each todo -> ", todos[id])
 
                 todoListTempArr.push({id, ...todos[id]})
             }
+
+            console.log("temparr    ", todoListTempArr)
             this.setState({
                 todoList: todoListTempArr
             })

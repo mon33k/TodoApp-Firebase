@@ -1,7 +1,6 @@
 import firebase from 'firebase/app' // Creates your own firebase app instance
 import 'firebase/auth'  // extends these specific features to my firebase app
-import 'firebase/database'
-
+import 'firebase/database' 
 
 const firebaseConfig = {
     apiKey: "AIzaSyAD5lZXQ0-hTCEDvlwQr2G6TYu5E5W9nfM",
