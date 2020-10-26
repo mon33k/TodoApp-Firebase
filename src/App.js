@@ -18,19 +18,24 @@ class App extends React.Component {
     this.state = {
       user: null
     }
+
+    this.setCurrentUser = this.setCurrentUser.bind(this)
   }
 
   setCurrentUser(user) {
-    this.setState ({
+    console.log("this.state logined user ->", user)
+    this.setState({
       user: user
     })
   }
 
-  handleLoginUser =() =>{
+  handleLoginUser = () =>{
     const { user } = this.state
-    console.log("the user ", user)
+
     if(user) {
-      return <Redirect to="/profile/:uid"/>
+      return <Redirect to={{pathname: `/profile/${user.username}`}} />
+      // return <Redirect to={{pathname: `/profile/${user.username}`, state: {uid: user['uid']}}} />
+
     } else {
       return <Login setCurrentUser={this.setCurrentUser}/>
     }
@@ -40,7 +45,8 @@ class App extends React.Component {
     const { user } = this.state
 
     if(user) {
-      return <Redirect to="/profile/:uid"/>
+      return <Redirect to="/profile/:username" /> 
+
     } else {
       return <SignUp setCurrentUser={this.setCurrentUser} /> 
     }
@@ -57,7 +63,9 @@ class App extends React.Component {
         <Switch>
           <Route path="/login" component={this.handleLoginUser}/>
           <Route path="/signup" component={this.handleSignUpUser} />
-          <Route path="/profile/:uid" component={Profile} />
+          <Route path="/profile/:username" component={Profile}/>
+          {/* <Route path="/profile/:username" render={(props) => <Profile {...props}/>} props={this.state.user}/> */}
+
         </Switch>
       </div>
     );
