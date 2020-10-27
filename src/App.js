@@ -11,6 +11,7 @@ import NavBar from './components/NavBar';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Profile from './components/Profile';
+import LandingPage from './components/LandingPage';
 
 class App extends React.Component {
   constructor() {
@@ -60,7 +61,8 @@ class App extends React.Component {
         {/* <Form/>
         <TodoList /> */}
   
-        <Switch>
+        <Switch> 
+          <Route path="/" exact component={LandingPage}/>
           <Route path="/login" component={this.handleLoginUser}/>
           <Route path="/signup" component={this.handleSignUpUser} />
           <Route path="/profile/:username" component={Profile}/>
