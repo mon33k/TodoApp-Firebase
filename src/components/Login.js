@@ -27,10 +27,9 @@ class Login extends React.Component {
                 res.user.updateProfile({
                     displayName: username
                 })
-                console.log("res.user.username", res.user.displayName)
                 this.setState({
-                    username: username,
-                    email: res.user.email,
+                    // username: username,
+                    // email: res.user.email,
                     userid: res.user.uid
                 })
                 this.props.setCurrentUser({email: res.user.email, userid: res.user.uid, username: username})

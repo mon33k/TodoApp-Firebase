@@ -33,7 +33,6 @@ class App extends React.Component {
 
     if(user) {
       return <Redirect to={{pathname: `/profile/${user.username}`}} />
-      // return <Redirect to={{pathname: `/profile/${user.username}`, state: {uid: user['uid']}}} />
     } else {
       return <Login setCurrentUser={this.setCurrentUser}/>
     } 
@@ -43,12 +42,22 @@ class App extends React.Component {
     const { user } = this.state
 
     if(user) {
-      return <Redirect to="/profile/:username" /> 
-
+      return <Redirect to={{pathname: `/profile/${user.username}`}} /> 
     } else {
       return <SignUp setCurrentUser={this.setCurrentUser} /> 
     }
   }
+
+  handleUserProfile = () => {
+    const {user} = this.state
+
+    if(user) {
+      return <Profile />
+    } else {
+      return <Redirect to="/"/>
+    }
+  } 
+
 
   render(){
     const {user} = this.state
@@ -60,7 +69,7 @@ class App extends React.Component {
           <Route path="/login" component={this.handleLoginUser}/>
           <Route path="/logout" component={LogOut} /> 
           <Route path="/signup" component={this.handleSignUpUser} />
-          <Route path="/profile/:username" component={Profile}/>
+          <Route path="/profile/:username" component={this.handleUserProfile}/> 
         </Switch>
       </div>
     );

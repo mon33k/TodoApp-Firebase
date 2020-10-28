@@ -22,25 +22,21 @@ class Profile extends React.Component {
     getLoggedInUser(){
         let user = firebase.auth().currentUser
         console.log("whole current user obj --> ", user)
-        if(user) {
             this.setState({
                 user: {username: user.displayName, email: user.email}
             })
-        } else {
-            return <Redirect to="/"/>
-        }
     }
 
 
     render() {
         const {user} = this.state
-        return(
-            <>
-            <div>{user ? user.username : ""}'s Profile</div>
-            <Form/>
-            <TodoList/>
-            </>
-        )
+            return(
+                <>
+                <div>{user ? user.username : ""}'s Profile</div>
+                <Form user={user}/>
+                <TodoList user={user}/>
+                </>
+            )
     }
 }
 
