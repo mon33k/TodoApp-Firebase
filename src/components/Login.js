@@ -24,6 +24,10 @@ class Login extends React.Component {
         const {email, password, username} = this.state
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then((res) => {
+                res.user.updateProfile({
+                    displayName: username
+                })
+                console.log("res.user.username", res.user.displayName)
                 this.setState({
                     username: username,
                     email: res.user.email,
@@ -31,7 +35,6 @@ class Login extends React.Component {
                 })
                 this.props.setCurrentUser({email: res.user.email, userid: res.user.uid, username: username})
             })
-            
             .catch(function(error) {
                 // Handle Errors here.
                 var errorCode = error.code;     // Create an error message alert from bootstrap

@@ -5,13 +5,12 @@ import './App.css';
 import { Switch, Route, Redirect} from 'react-router-dom';
 
 // Components
-import Form from './components/Form';
-import TodoList from './components/TodoList';
 import NavBar from './components/NavBar';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Profile from './components/Profile';
 import LandingPage from './components/LandingPage';
+import LogOut from './components/LogOut';
 
 class App extends React.Component {
   constructor() {
@@ -24,7 +23,6 @@ class App extends React.Component {
   }
 
   setCurrentUser(user) {
-    console.log("this.state logined user ->", user)
     this.setState({
       user: user
     })
@@ -36,10 +34,9 @@ class App extends React.Component {
     if(user) {
       return <Redirect to={{pathname: `/profile/${user.username}`}} />
       // return <Redirect to={{pathname: `/profile/${user.username}`, state: {uid: user['uid']}}} />
-
     } else {
       return <Login setCurrentUser={this.setCurrentUser}/>
-    }
+    } 
   }
 
   handleSignUpUser = () => {
@@ -54,20 +51,16 @@ class App extends React.Component {
   }
 
   render(){
+    const {user} = this.state
     return (
       <div className="App">
-        <NavBar/>
-        
-        {/* <Form/>
-        <TodoList /> */}
-  
+        <NavBar user={user}/>
         <Switch> 
           <Route path="/" exact component={LandingPage}/>
           <Route path="/login" component={this.handleLoginUser}/>
+          <Route path="/logout" component={LogOut} /> 
           <Route path="/signup" component={this.handleSignUpUser} />
           <Route path="/profile/:username" component={Profile}/>
-          {/* <Route path="/profile/:username" render={(props) => <Profile {...props}/>} props={this.state.user}/> */}
-
         </Switch>
       </div>
     );

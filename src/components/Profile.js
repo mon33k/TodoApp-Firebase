@@ -1,7 +1,9 @@
 // Has the users todos and only for that specific user
 import React from 'react';
-
 import firebase from '../firebase';
+import {Redirect} from 'react-router-dom'
+import Form from './Form';
+import TodoList from './TodoList';
 
 class Profile extends React.Component {
     constructor() {
@@ -19,19 +21,24 @@ class Profile extends React.Component {
 
     getLoggedInUser(){
         let user = firebase.auth().currentUser
-        console.log("userrr", this.props)
-        this.setState({
-            user: {username: user.username, email: user.email}
-        })
+        console.log("whole current user obj --> ", user)
+        if(user) {
+            this.setState({
+                user: {username: user.displayName, email: user.email}
+            })
+        } else {
+            return <Redirect to="/"/>
+        }
     }
 
 
     render() {
-        console.log('current logged in user ------> ', this.state.user)
-
+        const {user} = this.state
         return(
             <>
-            <div>Profile</div>
+            <div>{user ? user.username : ""}'s Profile</div>
+            <Form/>
+            <TodoList/>
             </>
         )
     }
