@@ -23,7 +23,7 @@ class Profile extends React.Component {
         let user = firebase.auth().currentUser
         console.log("whole current user obj --> ", user)
             this.setState({
-                user: {username: user.displayName, email: user.email}
+                user: {username: user.displayName, email: user.email, userid: user.uid}
             })
     }
 

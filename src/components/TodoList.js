@@ -11,15 +11,21 @@ class TodoList extends Component {
     }
 
     componentDidMount() {
+        this.getAllTodos()
+    }
+
+    getAllTodos() {
         const todoRef = firebase.database().ref('Todo');
+        console.log("user in todolist -> ", this.props.user)
         todoRef.on('value', (snapshot) => {
             const todos = snapshot.val()
             const todoListTempArr = []
             for (let id in todos) {
-                console.log("snapshot.val() id ", id)
-                console.log("each todo -> ", todos[id])
-
-                todoListTempArr.push({id, ...todos[id]})
+                // console.log("snapshot.val() id ", id)
+                // console.log("each todo userid -> ", todos[id].userid)
+                if(todos[id].userid === this.props.user.userid) {
+                    todoListTempArr.push({id, ...todos[id]})
+                }
             }
 
             console.log("temparr    ", todoListTempArr)

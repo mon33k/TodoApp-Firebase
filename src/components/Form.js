@@ -20,9 +20,10 @@ class Form extends React.Component {
     createTodo(e) {
         e.preventDefault();
         const todoRef = firebase.database().ref('Todo');
-
+        console.log("user in form component", this.props.user)
         const todo = {
             title: this.state.title,
+            userid: this.props.user.userid,
             complete: false,
         };
     
