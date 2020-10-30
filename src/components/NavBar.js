@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import '../styleheets/navbar.css'
+import '../styleheets/navbar.scss'
 
 const NavBar = ({user}) => {
     if(user) {

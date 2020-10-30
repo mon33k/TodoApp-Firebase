@@ -1,5 +1,7 @@
 import React from 'react';
 import firebase from '../firebase';
+import '../styleheets/Login.css'
+import { Container, Row, Col, Alert, Form, Button } from 'react-bootstrap';
 
 class Login extends React.Component {
     constructor() {
@@ -8,7 +10,8 @@ class Login extends React.Component {
             username: '',
             email: '',
             password: '',
-            userid: ''
+            userid: '',
+            error: ''
         }
         this.handleSubmit = this.handleSubmit.bind(this)
     }
@@ -34,38 +37,49 @@ class Login extends React.Component {
                 })
                 this.props.setCurrentUser({email: res.user.email, userid: res.user.uid, username: username})
             })
-            .catch(function(error) {
+            .catch((error) => {
                 // Handle Errors here.
-                var errorCode = error.code;     // Create an error message alert from bootstrap
-                var errorMessage = error.message;
-                console.log("error -> ", error)
-                // ...
+                this.setState({
+                    error: error.message
+                })
         });
     }
 
     render() {
-        const {email, password, username} = this.state
+        const {email, password, username, error} = this.state
         return(
-            <>
-            <div>Login</div>
-            <form>
-                <label>
-                    Username: 
-                    <input id="username" name="username" type="text" placeholder="username" value={username} onChange={this.handleInputChange}/>
-                </label>
-                <br></br>
-                <label>
-                    Email: 
-                    <input id="email" name="email" type="text" placeholder="email" value={email} onChange={this.handleInputChange}/>
-                </label>
-                <br></br>
-                <label>
-                    Password: 
-                    <input id="password" name="password" type="text" placeholder="password" value={password} onChange={this.handleInputChange}/>
-                </label>
-                <button type="submit" onClick={this.handleSubmit}>Submit</button>
-            </form>
-            </>
+            <Container>
+                <Row>
+                    <Col md={{ span: 6, offset: 3 }}>
+                        <h2 className="loginHeader">Login</h2>
+                    {error ? <Alert variant="danger">{error}</Alert>: ""}
+
+                    <Form>
+                        <Form.Group controlId="formBasicUsername">
+                            <Form.Label>Username</Form.Label>
+                            <Form.Control type="text" placeholder="Enter username" name="username" value={username} onChange={this.handleInputChange} />
+                        </Form.Group>
+
+                        <Form.Group controlId="formBasicEmail">
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control type="text" placeholder="Enter email" name="email" value={email} onChange={this.handleInputChange} />
+                        </Form.Group>
+
+                        <Form.Group controlId="formBasicPassword">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Password" name="password" value={password} onChange={this.handleInputChange} />
+                        </Form.Group>
+                        
+                    <Button variant="primary" type="submit" onClick={this.handleSubmit}>Submit</Button>
+                    </Form>
+
+
+
+
+                    </Col>
+                </Row>
+            
+            </Container>
         )
     }
 }
