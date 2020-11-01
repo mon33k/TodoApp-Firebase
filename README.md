@@ -3,7 +3,8 @@
 
 Click here to see the [live demo](https://firebasetodoapp.netlify.app) 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Getting Started
+---------------
 
 ## Available Scripts
 
