@@ -6,9 +6,13 @@ Click here to see the [live demo](https://firebasetodoapp.netlify.app)
 Getting Started
 ---------------
 
-## Available Scripts
+### Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+
+You also need to add your own firebase credentials in firebase.js
 
 ### `npm start`
 
