@@ -8,9 +8,9 @@ const firebaseConfig = {
     authDomain: config.firebaseAuthDomain,
     databaseURL: config.firebaseDbUrl,
     projectId: config.firebaseProjId,
-    storageBucket: "todoreactapp-ce050.appspot.com",
-    messagingSenderId: "1004282693910",
-    appId: "1:1004282693910:web:76579a9df2948118e0e837"
+    storageBucket: config.firebaseStorageBucket,
+    messagingSenderId: config.firebaseMsgSenderId,
+    appId: config.firebaseAppId
     };
 
 // Initialize Firebase
